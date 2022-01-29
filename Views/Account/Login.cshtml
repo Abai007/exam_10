@@ -1,0 +1,60 @@
+﻿@model exam_10.ViewModels.LoginViewModel
+@{
+    ViewData["Title"] = "Login page";
+}
+<div class="container">
+    <form method="post" asp-controller="Account" asp-action="Login"
+          asp-route-returnUrl="@Model.ReturnUrl">
+
+        <div asp-validation-summary="ModelOnly"></div>
+        <div>
+
+            <label asp-for="Email"></label><br />
+
+            <input asp-for="Email" />
+
+            <span asp-validation-for="Email"></span>
+
+        </div>
+        <div>
+
+            <label asp-for="Password"></label><br />
+            <input type="password" id="password-input" placeholder="Введите пароль" name="password" asp-for="Password" />
+            <a href="#" class="password-control" onclick="return show_hide_password(this);"><i class="far fa-eye"></i></a>
+
+            <span asp-validation-for="Password"></span>
+
+        </div>
+
+        <div>
+
+            <label asp-for="RememberMe"></label><br />
+
+            <input asp-for="RememberMe" />
+
+        </div>
+
+        <div>
+
+            <input type="submit" value="Войти" />
+
+        </div>
+
+    </form>
+    @section Scripts
+    {
+        <script>
+            function show_hide_password(target) {
+                var input = document.getElementById('password-input');
+                if (input.getAttribute('type') == 'password') {
+                    target.classList.add('view');
+                    input.setAttribute('type', 'text');
+                } else {
+                    target.classList.remove('view');
+                    input.setAttribute('type', 'password');
+                }
+                return false;
+            }
+        </script>
+    }
+</div>
