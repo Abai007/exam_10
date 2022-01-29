@@ -12,6 +12,7 @@ namespace exam_10.Models
         public string Id { get; set; }
         public string ReviewText { get; set; }
         public int Grade { get; set; }
+        public DateTime DateTime { get; set; }
         public string InstitutionId { get; set; }
         public Institution Institution { get; set; }
         public string UserId { get; set; }

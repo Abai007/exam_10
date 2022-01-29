@@ -107,11 +107,11 @@ namespace exam_10.Controllers
                 detailViewModel.Institution.Rating = Rating(detailViewModel.Institution.Reviews);
                 foreach (var i in detailViewModel.Institution.Reviews)
                 {
-                    @i.User = _db.Users.FirstOrDefault(u => u.Id == i.UserId);
+                    i.User = _db.Users.FirstOrDefault(u => u.Id == i.UserId);
                 }
             }
-                
-            
+            if(detailViewModel.Institution.Reviews != null)
+                detailViewModel.Institution.Reviews = detailViewModel.Institution.Reviews.OrderByDescending(r => r.DateTime).ToList();
             return View(detailViewModel);
         }
 
@@ -139,6 +139,7 @@ namespace exam_10.Controllers
             if(review != null)
             {
                 review.UserId = CurrentUser().Result.Id;
+                review.DateTime = DateTime.Now;
                 _db.Reviews.Add(review);
                 _db.SaveChanges();
             }

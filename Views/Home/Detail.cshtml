@@ -86,8 +86,11 @@
             </div>
         </div>
         <div class="align-content-center">
-            <a data-target="#modal-window" data-toggle="modal" class="btn btn-success">Оставить отзыв</a>
-            <a data-target="#modal-window1" data-toggle="modal" class="btn btn-success ml-3">Добавить фото</a>
+            @if (User.Identity.IsAuthenticated)
+            {
+                <a data-target="#modal-window" data-toggle="modal" class="btn btn-success">Оставить отзыв</a>
+                <a data-target="#modal-window1" data-toggle="modal" class="btn btn-success ml-3">Добавить фото</a>
+            }
         </div>
     </div>
 
@@ -101,6 +104,7 @@
             <div class="card-body">
                 <h5 class="card-title">Отзыв</h5>
                 <p class="card-text">@item.ReviewText</p>
+                <p class="test-muted">@item.DateTime</p>
             </div>
         </div>
     }
